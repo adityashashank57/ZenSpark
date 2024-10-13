@@ -1,28 +1,33 @@
-// frontend/src/components/YouTubeZenMode.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const YouTubeZenMode = () => {
-    const [query, setQuery] = useState('');
-    const [videos, setVideos] = useState([]);
+    const [query, setQuery] = useState(''); // For the input query
+    const [videos, setVideos] = useState([]); // To store fetched videos
+    const [ragResponse, setRagResponse] = useState(''); // For storing RAG response
 
     const handleSearch = async () => {
-        // Step 1: Call RAG model to generate a response based on the query
-    try {
-        const ragResponse = await axios.post('http://localhost:5000/generate', { query });
-        setRagResponse(ragResponse.data.response)
         try {
-            const response = await axios.get(`https://www.googleapis.com/youtube/v3/search`, {
-                params: {
-                    part: 'snippet',
-                    q: query,
-                    type: 'video',
-                    key: AIzaSyBC0DhrFnYcvHXEYWOBF-JPQEfwBudWMug,
-                }
-            });
-            setVideos(response.data.items);
+            // Step 1: Call RAG model to generate a response based on the query
+            const ragResult = await axios.post('http://localhost:5000/generate', { query });
+            setRagResponse(ragResult.data.response);
+
+            // Step 2: Use the RAG response to search YouTube videos
+            try {
+                const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+                    params: {
+                        part: 'snippet',
+                        q: ragResult.data.response, // Use the RAG response for YouTube search
+                        type: 'video',
+                        key: process.env.REACT_APP_YOUTUBE_API_KEY, // Ensure this key is in .env
+                    },
+                });
+                setVideos(response.data.items);
+            } catch (error) {
+                console.error('Error fetching YouTube videos', error);
+            }
         } catch (error) {
-            console.error('Error fetching YouTube videos', error);
+            console.error('Error querying the RAG model', error);
         }
     };
 

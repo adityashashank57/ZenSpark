@@ -1,7 +1,6 @@
 // src/index.js
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';  // Use ReactDOM from react-dom for React 17
 import './index.css';  // Import global CSS
 import App from './App';  // Import the main App component
 

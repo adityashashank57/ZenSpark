@@ -7,19 +7,19 @@ import Navbar from './components/Navbar';
 import './App.css';
 
 function App() {
-  return (
-    <Router>
+    return (
       <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/read-only-pdfs" element={<ReadOnlyPDFs />} />
-          <Route path="/pdf-with-videos" element={<PDFWithVideos />} />
-          <Route path="/youtube-zen-mode" element={<YouTubeZenMode />} />
-        </Routes>
+        <Navbar /> Render Navbar outside Router for testing
+        <Router>
+          <Routes>
+            <Route path="/read-only-pdfs" element={<ReadOnlyPDFs />} />
+            <Route path="/pdf-with-videos" element={<PDFWithVideos />} />
+            <Route path="/youtube-zen-mode" element={<YouTubeZenMode />} />
+            <Route path="*" element={<h1>4041 - Page Not Found</h1>} />
+          </Routes>
+        </Router>
       </div>
-    </Router>
-    // <h1>Hello...</h1>
-  );
-}
+    );
+  }
 
 export default App;

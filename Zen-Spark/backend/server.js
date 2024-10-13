@@ -1,29 +1,35 @@
+
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const path = require('path');
-// const pdfRoutes = require('./routes/pdfRoutes');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const pdfRoutes = require('./routes/pdfRoutes');
 
 // Load environment variables
 dotenv.config();
 
-// Initialize app
+// Initialize Express app
 const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // To parse JSON bodies
+
+// Test Route to Check Backend
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'Backend is working!' });
+});
 
 // API Routes (should be defined first to avoid conflict with frontend)
-// app.use('/api', pdfRoutes);
+app.use('/api', pdfRoutes);
 
-// Serve static files from the React frontend app
-//app.use(express.static(path.join(__dirname, '../frontend/build')));
+// // Serve Static Files (React Frontend)
+// app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-// Anything that doesn't match the API routes should serve the React frontend
+// // Catch-all Route to Serve React App (when no API routes match)
 // app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+//   res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 // });
 
 console.log('MONGO_URI:', process.env.MONGO_URI);  // Verify MONGO_URI is being loaded
