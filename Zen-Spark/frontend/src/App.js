@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //import Home from './components/Home';
+import Home from './components/Home'; // Import Home component
 import ReadOnlyPDFs from './components/ReadOnlyPDFs';
 import PDFWithVideos from './components/PDFWithVideos';
 import YouTubeZenMode from './components/YouTubeZenMode';
@@ -13,6 +14,7 @@ function App() {
         <div className="App">
           <Navbar /> {/* Navbar is part of every page */}
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/ReadOnlyPDFs" element={<ReadOnlyPDFs />} /> {/* Home route */}
             <Route path="/read-only-pdfs" element={<ReadOnlyPDFs />} />
             <Route path="/pdf-with-videos" element={<PDFWithVideos />} />

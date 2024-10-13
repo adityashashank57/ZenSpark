@@ -25,3 +25,10 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #575757;
 }
+
+/* Adjust the main content to account for the fixed navbar */
+.App {
+    margin-left: 200px; /* Adjust this to the width of your navbar */
+    padding: 20px;
+  }
+  

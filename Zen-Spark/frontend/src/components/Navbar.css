@@ -1,0 +1,36 @@
+/* Style the navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px; /* Adjust width as needed */
+    height: 100%;
+    background-color: #333; /* Background color of the navbar */
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    justify-content: start;
+    padding-top: 20px;
+  }
+  
+  .navbar-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .navbar-list li {
+    margin: 10px 0;
+  }
+  
+  .navbar-list li a {
+    text-decoration: none;
+    color: white; /* Change color as needed */
+    font-size: 20px; /* Set font size to 20px */
+    padding: 10px;
+    display: block;
+  }
+  
+  .navbar-list li a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+  }
+  
