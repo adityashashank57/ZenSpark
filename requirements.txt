@@ -1,0 +1,8 @@
+faiss_cpu==1.9.0
+Flask==1.1.4
+langchain==0.3.3
+langchain_community==0.3.2
+langchain_huggingface==0.1.0
+langchain_openai==0.2.2
+PyPDF2==3.0.1
+sentence_transformers==3.2.0
